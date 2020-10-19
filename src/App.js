@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef } from 'react';
+import { createStore, combineReducers } from 'redux'
+import LikesAndDislikes from './test/LikesAndDislikes';
+import likesReducer from './store/reducer/likes';
+import { Provider } from 'react-redux';
 
-function App() {
+const rootReducer = combineReducers({
+  likesAndDislike : likesReducer
+});
+
+const store = createStore(rootReducer);
+
+const App = () => {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={store}><LikesAndDislikes /></Provider>
+    )
 }
 
 export default App;
